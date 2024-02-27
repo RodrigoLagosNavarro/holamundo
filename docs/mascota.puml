@@ -1,0 +1,56 @@
+@startuml mascota
+
+class Mascota 
+class Alimento
+class Juguete
+class Pelota 
+class Carne 
+class Perro 
+class Gato 
+class Collar
+class Cascabel
+class Placa
+class Croquetas
+class Dueño
+class Campanita
+class Arenero
+class Patio
+class Humano
+class Dormitorio
+class Nombre
+class Especie
+
+Dueño *-- Mascota
+
+Mascota *-- Nombre
+Mascota *-- Especie
+
+Dueño --|> Humano
+
+Alimento --o Mascota 
+Mascota o-- Juguete
+
+Mascota --o Dormitorio
+
+Gato --|> Mascota
+Perro --|> Mascota
+
+Perro --o Patio
+Gato --o Arenero
+
+Mascota --* Collar
+
+Placa --|> Collar
+Cascabel --|> Collar
+
+Carne --|> Alimento 
+Croquetas --|> Alimento
+
+Pelota --|> Juguete 
+Campanita --|> Juguete
+
+
+
+
+
+@enduml
