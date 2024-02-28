@@ -1,53 +1,107 @@
 @startuml mascota
 
-class Mascota 
-class Alimento
-class Juguete
-class Pelota 
+package Mascotas{
+class Mascota{
+    -dueño: Dueño
+    -especie: Especie
+    +Come:Alimento()
+    +Juega: Juguetes()
+    +Usa: Accesorio()
+    +Habita: Lugar()
+}
+class Nombre{
+    -mascota: Mascota
+    +Grabado: Placa()
+}
+}
+
+package Juguetes{
+class Juguete{
+    -dueño: Dueño
+    +Juega: Perro()
+    +Juega: Gato()
+}
+class Pelota {
+    -dueño: Dueño
+    +Juega: Perro()
+    +Juega: Gato()
+}
+class Campanita{
+    -dueño: Dueño
+    +Juega: Perro()
+    +Juega: Gato()
+}
+}
+
+package Alimentos{
+class Alimento{
+    -carne: Carne
+    -croquetas: Croquetas
+    +Consume: Perro()
+    +Consume: Gato()
+}
 class Carne 
-class Perro 
-class Gato 
+class Croquetas
+}
+
+package Accesorio{
 class Collar
 class Cascabel
-class Placa
-class Croquetas
+class Placa 
+}
+ 
+
+package Especies{
+class Perro 
+class Gato 
+class Especie
+}
+
+
+package Persona{
 class Dueño
-class Campanita
+class Humano
+}
+
+package Lugar{
 class Arenero
 class Patio
-class Humano
 class Dormitorio
-class Nombre
-class Especie
+}
 
-Dueño *-- Mascota
 
-Mascota *-- Nombre
-Mascota *-- Especie
 
-Dueño --|> Humano
 
-Alimento --o Mascota 
-Mascota o-- Juguete
 
-Mascota --o Dormitorio
 
-Gato --|> Mascota
-Perro --|> Mascota
+Dueño "1" *-- "1" Mascota
 
-Perro --o Patio
-Gato --o Arenero
+Mascota "1" *-- "*" Nombre
+Mascota "1" *-- "*" Especie
 
-Mascota --* Collar
+Dueño "*" --|> "1" Humano
 
-Placa --|> Collar
-Cascabel --|> Collar
+Alimento "1" --o "1..*" Mascota 
+Mascota "1" o-- "1..*" Juguete
 
-Carne --|> Alimento 
-Croquetas --|> Alimento
+Mascota "1" --o "1" Dormitorio
 
-Pelota --|> Juguete 
-Campanita --|> Juguete
+Gato "1" --|> "1" Mascota
+Perro "1" --|> "1" Mascota
+
+Perro "1..*" --o "1" Patio
+Gato "1..*" --o "1" Arenero
+
+Mascota "1" --* "1" Collar
+
+Placa "0,1" --|> "1" Collar
+Cascabel "0,1" --|> "1" Collar
+
+Carne "1" --|> "1" Alimento 
+Croquetas "1" --|> "1" Alimento
+
+Pelota "12,24" --|> "1" Juguete 
+Campanita "3" --|> "1" Juguete
 
 
 
